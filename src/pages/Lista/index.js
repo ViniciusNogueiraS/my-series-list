@@ -18,7 +18,7 @@ export default function Lista({navigation}) {
     sinopse: '',
     generos: '',
     poster: '',
-    amv: ''
+    trailer: ''
   }
 
   useEffect(async () => {
@@ -46,7 +46,7 @@ export default function Lista({navigation}) {
       <ScrollView style={style.container}>
         <View style={style.lista}>
           {lista.map((item, index) => (
-            <View style={style.item}>
+            <View style={style.item} key={index}>
               <Image source={{uri: item.poster}} style={style.poster}/>
               <View style={style.controls}>
                 <FontAwesome.Button
@@ -55,7 +55,7 @@ export default function Lista({navigation}) {
                   name="eye"
                   size={25}
                   color="#e7e7e7cf"
-                  backgroundColor={'#00000000'}
+                  backgroundColor={'transparent'}
                   onPress={() => navigation.navigate('Série', lista[index])}
                 />
                 <FontAwesome.Button
@@ -64,7 +64,7 @@ export default function Lista({navigation}) {
                   name="pencil"
                   size={25}
                   color="#e7e7e7cf"
-                  backgroundColor={'#00000000'}
+                  backgroundColor={'transparent'}
                   onPress={() => navigation.navigate('Formulário', {serie: lista[index], index, setLista})}
                   />
                 <FontAwesome.Button
@@ -73,7 +73,7 @@ export default function Lista({navigation}) {
                   name="trash"
                   size={25}
                   color="#e7e7e7cf"
-                  backgroundColor={'#00000000'}
+                  backgroundColor={'transparent'}
                   onPress={() => excluir(index)}
                 />
               </View>
@@ -103,8 +103,7 @@ const style = StyleSheet.create({
   },
   item: {
     position: 'relative',
-    width: 140,
-    flexGrow: 1,
+    width: '50%',
     marginHorizontal: 0,
     marginVertical: 10,
     fontFamily: 'MontserratBold',
@@ -113,10 +112,11 @@ const style = StyleSheet.create({
     textAlignVertical: 'center'
   },
   poster: {
-    width: '100%',
-    height: 210,
-    resizeMode: "contain",
-    margin: 0,
+    width: 'auto',
+    height: 230,
+    resizeMode: "cover",
+    marginHorizontal: 19,
+    marginVertical: 5,
     padding: 0,
   },
   controls: {
@@ -125,7 +125,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     paddingLeft: 10,
     paddingVertical: 3,
-    bottom: 0,
+    bottom: 4,
     alignSelf: 'center', 
     backgroundColor: '#00000085'
   },
@@ -136,6 +136,6 @@ const style = StyleSheet.create({
     marginHorizontal: 6,
     textAlign: 'center',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   }
 })

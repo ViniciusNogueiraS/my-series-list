@@ -48,9 +48,9 @@ export default function Serie({route}) {
             style={{...style.btnPrimary, ...(videoOpened ? {display: 'none'} : {display: 'flex'})}}
             onPress={() => setVideoOpened(!videoOpened)}
           >
-            <Text style={style.btnText}>Assistir ao AMV</Text>
+            <Text style={style.btnText}>Assistir ao Trailer</Text>
           </TouchableOpacity>
-          <PlayerVideo amv={serie.amv} opened={videoOpened}/>
+          <PlayerVideo trailer={serie.trailer} opened={videoOpened}/>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -67,7 +67,7 @@ const style = StyleSheet.create({
   },
   image: {
     width: widthScreen,
-    height: 1270 / 920 * widthScreen
+    height: 1370 / 920 * widthScreen
   },
   title: {
     fontFamily: 'MontserratBold',

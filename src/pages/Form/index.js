@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { StyleSheet, ScrollView, View, Text, Button, TextInput } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, ScrollView, View, Text, TextInput } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -17,12 +17,12 @@ export default function Form({navigation, route}) {
   const [sinopse, setSinopse] = useState(serie.sinopse);
   const [generos, setGeneros] = useState(serie.generos);
   const [poster, setPoster] = useState(serie.poster);
-  const [amv, setAmv] = useState(serie.amv);
+  const [trailer, setTrailer] = useState(serie.trailer);
 
   async function salvar() {
 
     let series = JSON.parse(await AsyncStorage.getItem('series')) || [];
-    let serie = {nome, estudio, autor, diretor, ano, episodeos, sinopse, generos, poster, amv};
+    let serie = {nome, estudio, autor, diretor, ano, episodeos, sinopse, generos, poster, trailer};
 
     if (index === -1) series.push(serie);
     else series[index] = serie;
@@ -53,8 +53,8 @@ export default function Form({navigation, route}) {
         <TextInput style={style.input} onChangeText={setGeneros} value={generos} />
         <Text style={style.label}>Poster:</Text><Text style={style.info}>URL da imagem</Text>
         <TextInput style={style.input} onChangeText={setPoster} value={poster} keyboardType={'url'}/>
-        <Text style={style.label}>AMV:</Text><Text style={style.info}>ID do vídeo do Youtube</Text>
-        <TextInput style={style.input} onChangeText={setAmv} value={amv} keyboardType={'url'}/>
+        <Text style={style.label}>Trailer:</Text><Text style={style.info}>ID do vídeo do Youtube</Text>
+        <TextInput style={style.input} onChangeText={setTrailer} value={trailer} keyboardType={'url'}/>
         <FontAwesome.Button
           style={style.btn}
           borderRadius={0}
